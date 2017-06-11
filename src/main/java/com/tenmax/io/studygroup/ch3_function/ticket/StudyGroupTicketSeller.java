@@ -10,10 +10,14 @@ public class StudyGroupTicketSeller {
 
     private static final double DEFAULT_PRICE = 50D;
 
+    private static StudyGroupTicketFactory ticketFactory = new StudyGroupTicketFactoryImpl();
+
+
     private StudyGroupTicketSeller() {
     }
 
     public static StudyGroupTicket aTicket(Person person) {
-        return new StudyGroupTicket(DEFAULT_PRICE, person.getMemberType());
+
+        return ticketFactory.makeTicket(person, DEFAULT_PRICE);
     }
 }
