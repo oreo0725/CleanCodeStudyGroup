@@ -29,6 +29,19 @@ public class StudyGroupTicket {
         return tempPrice;
     }
 
+    public double getRefundPrice() {
+        double refundPrice = 0;
+        switch (memberType) {
+            case VIP:
+                refundPrice = getPrice() * 0.9;
+                break;
+            case MEMBER:
+                refundPrice = getPrice() * 0.5;
+                break;
+        }
+        return refundPrice;
+    }
+
     public double getOriginPrice() {
         return originPrice;
     }

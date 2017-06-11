@@ -39,6 +39,32 @@ public class TicketPriceTest {
         assertThat(ticket.getPrice()).isEqualTo(PRICE);
     }
 
+    @Test
+    public void test_getRefundPrice_WHEN_vip_buy_ticket_THEN_get_50off_discount() throws Exception {
+
+        StudyGroupTicket ticket = createStudyGroupTicket(StudyGroupMemberType.VIP);
+
+        assertThat(ticket.getRefundPrice()).isEqualTo(PRICE * 0.5 * 0.9);
+    }
+
+    @Test
+    public void test_getRefundPrice_WHEN_member_buy_ticket_THEN_get_20off_discount() throws Exception {
+
+        StudyGroupTicket ticket = createStudyGroupTicket(StudyGroupMemberType.MEMBER);
+
+        assertThat(ticket.getRefundPrice()).isEqualTo(PRICE * 0.8 * 0.5);
+    }
+
+    @Test
+    public void test_getRefundPrice_WHEN_nonMember_buy_ticket_THEN_no_discount() throws Exception {
+
+        StudyGroupTicket ticket = createStudyGroupTicket(StudyGroupMemberType.NON_MEMBER);
+
+        assertThat(ticket.getRefundPrice()).isEqualTo(0d);
+    }
+
+
+
     private StudyGroupTicket createStudyGroupTicket(StudyGroupMemberType memberType) {
         Person person = new Person(memberType);
         return StudyGroupTicketSeller.aTicket(person);
