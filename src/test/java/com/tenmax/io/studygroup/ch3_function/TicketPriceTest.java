@@ -18,8 +18,7 @@ public class TicketPriceTest {
     @Test
     public void test_getPrice_WHEN_vip_buy_ticket_THEN_get_50off_discount() throws Exception {
 
-        Person person = new Person(StudyGroupMemberType.VIP);
-        StudyGroupTicket ticket = StudyGroupTicketSeller.aTicket(person);
+        StudyGroupTicket ticket = createStudyGroupTicket(StudyGroupMemberType.VIP);
 
         assertThat(ticket.getPrice()).isEqualTo(PRICE * 0.5);
     }
@@ -27,8 +26,7 @@ public class TicketPriceTest {
     @Test
     public void test_getPrice_WHEN_member_buy_ticket_THEN_get_20off_discount() throws Exception {
 
-        Person person = new Person(StudyGroupMemberType.MEMBER);
-        StudyGroupTicket ticket = StudyGroupTicketSeller.aTicket(person);
+        StudyGroupTicket ticket = createStudyGroupTicket(StudyGroupMemberType.MEMBER);
 
         assertThat(ticket.getPrice()).isEqualTo(PRICE * 0.8);
     }
@@ -36,9 +34,13 @@ public class TicketPriceTest {
     @Test
     public void test_getPrice_WHEN_nonMember_buy_ticket_THEN_no_discount() throws Exception {
 
-        Person person = new Person(StudyGroupMemberType.NON_MEMBER);
-        StudyGroupTicket ticket = StudyGroupTicketSeller.aTicket(person);
+        StudyGroupTicket ticket = createStudyGroupTicket(StudyGroupMemberType.NON_MEMBER);
 
         assertThat(ticket.getPrice()).isEqualTo(PRICE);
+    }
+
+    private StudyGroupTicket createStudyGroupTicket(StudyGroupMemberType memberType) {
+        Person person = new Person(memberType);
+        return StudyGroupTicketSeller.aTicket(person);
     }
 }

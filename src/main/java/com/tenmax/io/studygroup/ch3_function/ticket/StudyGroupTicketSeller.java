@@ -10,10 +10,10 @@ public class StudyGroupTicketSeller {
 
     private static final double DEFAULT_PRICE = 50D;
 
-    public static StudyGroupTicket aTicket(Person person) {
-        StudyGroupTicket ticket = new StudyGroupTicket(DEFAULT_PRICE);
-        ticket.setMemberType(person.getMemberType());
+    private StudyGroupTicketSeller() {
+    }
 
-        return ticket;
+    public static StudyGroupTicket aTicket(Person person) {
+        return new StudyGroupTicket(DEFAULT_PRICE, person.getMemberType());
     }
 }

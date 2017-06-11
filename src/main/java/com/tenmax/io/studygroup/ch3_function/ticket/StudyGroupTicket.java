@@ -7,16 +7,18 @@ package com.tenmax.io.studygroup.ch3_function.ticket;
 public class StudyGroupTicket {
 
     private final double originPrice;
-    private StudyGroupMemberType memberType;
+    private final StudyGroupMemberType memberType;
 
-    StudyGroupTicket(double originPrice) {
+    StudyGroupTicket(double originPrice,
+                     StudyGroupMemberType memberType) {
         this.originPrice = originPrice;
+        this.memberType = memberType;
     }
 
     public double getPrice() {
 
         double tempPrice = getOriginPrice();
-        switch(memberType) {
+        switch (memberType) {
             case VIP:
                 tempPrice = tempPrice * 0.5;
                 break;
@@ -31,8 +33,7 @@ public class StudyGroupTicket {
         return originPrice;
     }
 
-    public void setMemberType(StudyGroupMemberType memberType) {
-        this.memberType = memberType;
+    public StudyGroupMemberType getMemberType() {
+        return memberType;
     }
-
 }
