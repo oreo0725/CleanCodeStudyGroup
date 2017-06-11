@@ -1,0 +1,33 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE"
+    }
+}
+
+plugins {
+    id "java"
+    id "com.github.samueltbrown.cucumber" version "0.9"
+    id "idea"
+    id "war"
+    id "jacoco"
+}
+group 'com.tenmax.io'
+
+apply plugin: "spring-boot"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+war {
+    baseName = "studygroup"
+    version =  "HEAD"
+}
+
+apply from: "gradle/dependency.gradle"
+apply from: "gradle/common.gradle"
+apply from: "gradle/run.gradle"
+apply from: "gradle/ci.gradle"
