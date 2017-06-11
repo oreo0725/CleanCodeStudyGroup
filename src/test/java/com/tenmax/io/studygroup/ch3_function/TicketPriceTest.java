@@ -1,6 +1,5 @@
 package com.tenmax.io.studygroup.ch3_function;
 
-import com.tenmax.io.studygroup.ch3_function.ticket.StudyGroupMemberType;
 import com.tenmax.io.studygroup.ch3_function.ticket.StudyGroupTicket;
 import com.tenmax.io.studygroup.ch3_function.ticket.StudyGroupTicketSeller;
 import org.junit.Test;

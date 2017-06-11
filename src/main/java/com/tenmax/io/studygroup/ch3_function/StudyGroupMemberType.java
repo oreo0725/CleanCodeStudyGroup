@@ -1,4 +1,4 @@
-package com.tenmax.io.studygroup.ch3_function.ticket;
+package com.tenmax.io.studygroup.ch3_function;
 
 /**
  * @author zen
