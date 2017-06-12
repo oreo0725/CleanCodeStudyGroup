@@ -31,6 +31,10 @@ public class StudyGroupTicket {
         return tempPrice;
     }
 
+    /**
+     * 取消訂票時可獲得的退款
+     * @return
+     */
     public double getRefundPrice() {
         double refundPrice = 0;
         switch (memberType) {
