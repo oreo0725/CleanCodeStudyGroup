@@ -12,29 +12,20 @@ import java.util.Map;
  */
 public class StudyGroup {
 
-    private Map<LocalDate, List<String>> joinedNameList = new HashMap<>();
+    private Map<LocalDate, List<String>> sessionRegisterMap = new HashMap<>();
     private double income = 0D;
 
-    private StudyGroup(LocalDate date) {
-        joinedNameList.put(date, new ArrayList<>());
-    }
-
-    private StudyGroup(LocalDate date1,
-                       LocalDate date2) {
-        joinedNameList.put(date1, new ArrayList<>());
-        joinedNameList.put(date2, new ArrayList<>());
-    }
-
+    //initial available session
     private StudyGroup(LocalDate date1,
                        LocalDate date2,
                        LocalDate date3,
                        LocalDate date4,
                        LocalDate date5) {
-        joinedNameList.put(date1, new ArrayList<>());
-        joinedNameList.put(date2, new ArrayList<>());
-        joinedNameList.put(date3, new ArrayList<>());
-        joinedNameList.put(date4, new ArrayList<>());
-        joinedNameList.put(date5, new ArrayList<>());
+        sessionRegisterMap.put(date1, new ArrayList<>());
+        sessionRegisterMap.put(date2, new ArrayList<>());
+        sessionRegisterMap.put(date3, new ArrayList<>());
+        sessionRegisterMap.put(date4, new ArrayList<>());
+        sessionRegisterMap.put(date5, new ArrayList<>());
 
     }
 
@@ -43,7 +34,7 @@ public class StudyGroup {
                                boolean isTenmaxMember,
                                LocalDate sessionDate) {
 
-        if (!joinedNameList.containsKey(sessionDate)) {
+        if (!sessionRegisterMap.containsKey(sessionDate)) {
             //no such session
             return false;
         }
@@ -62,9 +53,9 @@ public class StudyGroup {
 
     private void addNameToJoin(String name,
                                LocalDate sessionDate) {
-        List<String> nameList = joinedNameList.getOrDefault(sessionDate, new ArrayList<>());
+        List<String> nameList = sessionRegisterMap.getOrDefault(sessionDate, new ArrayList<>());
         nameList.add(name);
-        joinedNameList.put(sessionDate, nameList);
+        sessionRegisterMap.put(sessionDate, nameList);
     }
 
     public double getIncome() {
@@ -74,7 +65,10 @@ public class StudyGroup {
     public static void main(String[] args) {
         final LocalDate session1 = LocalDate.of(2017, 6, 13);
         final LocalDate session2 = LocalDate.of(2017, 6, 20);
-        StudyGroup cleanCodeStudyGroup = new StudyGroup(session1, session2);
+        final LocalDate session3 = LocalDate.of(2017, 6, 27);
+        final LocalDate session4 = LocalDate.of(2017, 7, 4);
+        final LocalDate session5 = LocalDate.of(2017, 7, 11);
+        StudyGroup cleanCodeStudyGroup = new StudyGroup(session1, session2, session3, session4, session5);
 
         boolean isJoined = cleanCodeStudyGroup.joinSession("大神", 20, true, session1);
         System.out.println("大神 join for 2017/6/13 succ? " + isJoined);
